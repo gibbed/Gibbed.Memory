@@ -80,8 +80,8 @@ namespace Gibbed.Memory
             int length = 0;
             while (true)
             {
-                var slice = span.Slice(index, characterSize);
-                if (slice == endSpan)
+                var slice = span.Slice(index + length, characterSize);
+                if (MemoryExtensions.SequenceEqual(slice, endSpan) == true)
                 {
                     break;
                 }
