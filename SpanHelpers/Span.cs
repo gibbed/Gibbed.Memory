@@ -22,7 +22,7 @@
 
 using System;
 
-namespace Gibbed.Memory.SpanHelpers
+namespace Gibbed.Memory
 {
     public static class Span
     {
