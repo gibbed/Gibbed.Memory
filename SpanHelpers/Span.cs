@@ -21,21 +21,16 @@
  */
 
 using System;
-using System.Buffers;
 
-namespace Gibbed.Memory
+namespace Gibbed.Memory.SpanHelpers
 {
-    public static partial class IBufferWriterHelpers
+    public static class Span
     {
-        public static void WriteBytes(this IBufferWriter<byte> writer, byte[] buffer)
+        public static byte[] ReadBytes(this ReadOnlySpan<byte> span, ref int index, int size)
         {
-            writer.Write(buffer);
-        }
-
-        public static void WriteBytes(this IBufferWriter<byte> writer, byte[] buffer, int index, int count)
-        {
-            ReadOnlySpan<byte> span = new(buffer, index, count);
-            writer.Write(span);
+            span = span.Slice(index, size);
+            index += size;
+            return span.ToArray();
         }
     }
 }
